@@ -731,4 +731,4 @@ main_window.mainloop()
 # EŞİT NÖBET SAYILARI
 # kayıtlı personelleri pencerede göster
 # personel sil, düzenle, ara.
-# git 123
+# git 
