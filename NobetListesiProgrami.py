@@ -478,9 +478,18 @@ class Personnel():
     @classmethod
     def show_all_personnels(cls):
         if not Personnel.all_personnels:
-            print("Personel yok !")
+            tkmsg.showinfo("!", "Kayıtlı Personel Yok !")
+            #print("Personel yok !")
         else:
+            personel_window = tk.Toplevel()
             for per_inst in Personnel.all_personnels.values():
+                
+                personel_label = tk.Label(personel_window, text="-" * 56 + "\n" + per_inst.name + "\nistenilen günler :" + str(per_inst.annual_leave_days) +
+                "\nistenmeyen günler :" + str(per_inst.unwanted_days) + "\nyıllık izin :" + str(per_inst.annual_leave_days) + "\nson günü :" + 
+                str(per_inst.last_workday_of_last_month) + "\npersonel grubu :" + str(per_inst.personnel_group))
+
+                personel_label.pack()
+        
                 print(per_inst.name,"\nistenilen günler :", per_inst.wanted_days,
                 "\nistenmeyen günler :", per_inst.unwanted_days, "\nyıllık izin :", per_inst.annual_leave_days, "\nson günü :", per_inst.last_workday_of_last_month, 
                 "\npersonel grubu :", per_inst.personnel_group)
@@ -729,6 +738,5 @@ main_window.mainloop()
 
 #########################
 # EŞİT NÖBET SAYILARI
-# kayıtlı personelleri pencerede göster
+# Yıllık izin alana fazla mesai yok kuralı
 # personel sil, düzenle, ara.
-# git deneme
