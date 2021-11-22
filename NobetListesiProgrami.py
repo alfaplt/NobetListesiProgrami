@@ -739,4 +739,5 @@ main_window.mainloop()
 #########################
 # EŞİT NÖBET SAYILARI
 # Yıllık izin alana fazla mesai yok kuralı
+# İzin sonrası tutulması gereken nöbet sayısı ?
 # personel sil, düzenle, ara.
