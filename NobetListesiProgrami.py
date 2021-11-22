@@ -444,6 +444,38 @@ class GUI:
 
         self.exit_button = tk.Button(self.frame8, text="ÇIKIŞ", bg="red", fg="white", width=10, font="DejaVuSans 13 bold", border=3, command=main_window.destroy)
         self.exit_button.pack(pady=15)
+
+        ### MenuBar ###
+        def delete_personnel():
+            name_entry_screen = tk.Toplevel()
+            name_label = tk.Label(name_entry_screen, text="Silinecek İsmi Giriniz.")
+            name_label.pack()
+            name_entry = tk.Entry(name_entry_screen, bg="white")
+            name_entry.pack()
+
+            def delete():
+                deleted_name = name_entry.get()
+                if deleted_name not in Personnel.all_personnels.keys():
+                    tkmsg.showwarning("Hata", "Silmeye çalıştığınız personel kayıtlı değil !")
+                else:
+                    reply = tkmsg.showwarning("Dikkat !", deleted_name + "Silinecek, Emin misiniz ?", type="yesno")
+
+                    if reply == "no":
+                        pass
+                    else:
+                        Personnel.all_personnels.pop(deleted_name)
+                
+            delete_button = tk.Button(name_entry_screen, text="SİL", command=delete)
+            delete_button.pack()
+
+        menubar = tk.Menu(main_window)
+        options = tk.Menu(menubar, tearoff=0)
+        options.add_command(label="Personel Sil", command=delete_personnel)
+        options.add_command(label="Personel Düzenle")
+
+        menubar.add_cascade(label="Seçenekler...", menu=options, foreground="red")
+        main_window.config(menu=menubar)
+
     
 ###################################################################################
 class Personnel():
