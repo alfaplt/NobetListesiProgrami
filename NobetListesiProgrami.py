@@ -448,8 +448,10 @@ class GUI:
         ### MenuBar ###
         def delete_personnel():
             name_entry_screen = tk.Toplevel()
+            
+            name_entry_screen.geometry(f"50x70+{(screen_width-800)//2}+{(screen_height-480)//4}")
             name_label = tk.Label(name_entry_screen, text="Silinecek İsmi Giriniz.")
-            name_label.pack()
+            name_label.pack(anchor="nw")
             name_entry = tk.Entry(name_entry_screen, bg="white")
             name_entry.pack()
 
@@ -466,14 +468,18 @@ class GUI:
                         Personnel.all_personnels.pop(deleted_name)
                 
             delete_button = tk.Button(name_entry_screen, text="SİL", command=delete)
-            delete_button.pack()
+            delete_button.pack(side="left")
+            cancel_button = tk.Button(name_entry_screen, text="VAZGEÇ", command=name_entry_screen.destroy)
+            cancel_button.pack(side="right")
 
         menubar = tk.Menu(main_window)
         options = tk.Menu(menubar, tearoff=0)
-        options.add_command(label="Personel Sil", command=delete_personnel)
-        options.add_command(label="Personel Düzenle")
+        options.add_command(label="Personel Sil", background="red", command=delete_personnel)
+        options.add_command(label="Personel Düzenle", background="red")
+        options.add_command(label="Hakkında", background="red")
 
-        menubar.add_cascade(label="Seçenekler...", menu=options, foreground="red")
+
+        menubar.add_cascade(label="Seçenekler...", menu=options)
         main_window.config(menu=menubar)
 
     
