@@ -561,6 +561,7 @@ class WorkList():
         main_title = tk.Label(frame1, text=current_month + " AYI NÖBET LİSTESİ", font="Verdana 15", fg="red")
         main_title.pack(side="top")
 
+        global frame2
         frame2 = tk.Frame(list_window)
         frame2.pack(fill="x")
         # x = tk.Label(frame2, text="AABT", fg="red", font="verdana 12")
@@ -574,6 +575,24 @@ class WorkList():
             tk.Label(frame2, text=str(self.days[i][0]) + " : ").grid(row=y, column=0)
             tk.Label(frame2, text=self.days[i][1]).grid(row=y, column=1)
             y += 1
+
+    def caunt_work_days(self):
+        global personnel_work_days
+        personnel_work_days = dict()
+        global frame2
+        
+        for personnel in Personnel.all_personnels.keys():
+            personnel_work_days[personnel] = (sum(x.count(personnel) for x in self.days[:-2])) - 1  # geçen ayın son nöbetini çıkardım(-1)
+            
+        for i in personnel_work_days.items():
+            print(i)
+
+        tk.Label(frame2, text="   -Nöbet sayıları-").grid(row=1, column=10)
+
+        y = 2    
+        for i in personnel_work_days.items():
+             tk.Label(frame2, text=i).grid(row=y, column=10)
+             y += 1
 
     def placing_wanted_days(self):
         for personnel in Personnel.all_personnels.values():
@@ -686,15 +705,8 @@ class WorkList():
                             #print(self.days[i][1], "kişisinin, ayın", self.days[i][0], ".gününe kadar ", break_days, "gün boşluğu var")
                             break  
                   
-    def caunt_work_days(self):
-        global personnel_work_days
-        personnel_work_days = dict()
+    
         
-        for personnel in Personnel.all_personnels.keys():
-            personnel_work_days[personnel] = (sum(x.count(personnel) for x in self.days[:-2])) - 1  # geçen ayın son nöbetini çıkardım(-1)
-            
-        for i in personnel_work_days.items():
-            print(i)
            
     # def rules(self):
     #     if self.rule1 == 1:
