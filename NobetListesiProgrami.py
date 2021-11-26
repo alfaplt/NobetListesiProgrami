@@ -522,7 +522,7 @@ class Personnel():
             personel_window = tk.Toplevel()
             for per_inst in Personnel.all_personnels.values():
                 
-                personel_label = tk.Label(personel_window, text="-" * 56 + "\n" + per_inst.name + "\nistenilen günler :" + str(per_inst.annual_leave_days) +
+                personel_label = tk.Label(personel_window, text="-" * 56 + "\n" + per_inst.name + "\nistenilen günler :" + str(per_inst.wanted_days) +
                 "\nistenmeyen günler :" + str(per_inst.unwanted_days) + "\nyıllık izin :" + str(per_inst.annual_leave_days) + "\nson günü :" + 
                 str(per_inst.last_workday_of_last_month) + "\npersonel grubu :" + str(per_inst.personnel_group))
 
@@ -691,7 +691,7 @@ class WorkList():
         personnel_work_days = dict()
         
         for personnel in Personnel.all_personnels.keys():
-            personnel_work_days[personnel] = (sum(x.count(personnel) for x in self.days)) - 1  # geçen ayın son nöbetini çıkardım(-1)
+            personnel_work_days[personnel] = (sum(x.count(personnel) for x in self.days[:-2])) - 1  # geçen ayın son nöbetini çıkardım(-1)
             
         for i in personnel_work_days.items():
             print(i)
