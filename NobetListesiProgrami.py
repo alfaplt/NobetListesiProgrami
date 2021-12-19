@@ -9,7 +9,7 @@ number_of_days_list = {"OCAK":31, "ŞUBAT":28, "MART":31, "NİSAN":30, "MAYIS":3
 today = datetime.date.today()
 
 #  if not pick a month
-current_month = list_of_months[today.month]       
+current_month = list_of_months[today.month - 1]       
 previous_month = list_of_months[today.month - 1]
 
 current_month_number_of_days = number_of_days_list[current_month]
