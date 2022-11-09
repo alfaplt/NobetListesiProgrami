@@ -1,1 +1,1 @@
-## 112 çalışanları için nöbet listesi hazırlama programı.
+# 112 çalışanları için nöbet listesi hazırlama programı.
